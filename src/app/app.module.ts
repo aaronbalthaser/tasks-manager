@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 /* Module Dependencies */
+import { TasksManagerModule } from './modules/tasks-manager';
 
 /* Containers */
 import { AppComponent } from './app.component';
@@ -14,7 +15,9 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+
+    TasksManagerModule
   ],
   declarations: [
     AppComponent

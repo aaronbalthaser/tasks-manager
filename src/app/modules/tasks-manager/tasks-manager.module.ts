@@ -13,9 +13,13 @@ import { TasksComponent } from './containers/tasks/tasks.component';
 import { InvalidTokenComponent } from './components/invalid-token/invalid-token.component';
 
 /* Services */
+import { TasksDataSource } from './tasks-data-source';
 import { TasksManagerService } from './services/tasks-manager.service';
-import { TasksDataService } from './services/tasks-data.service';
+import { TasksBuilderService } from './services/tasks-builder.service';
+import { TasksOptionsService } from './services/tasks-options.service';
 import { Transmit } from './services/transmit';
+
+import { Store } from './store';
 
 /* Routes */
 
@@ -32,9 +36,13 @@ import { Transmit } from './services/transmit';
     InvalidTokenComponent
   ],
   providers: [
+    TasksDataSource,
     TasksManagerService,
-    TasksDataService,
-    Transmit
+    TasksBuilderService,
+    TasksOptionsService,
+    Transmit,
+
+    Store
   ],
   exports: [
     TasksManagerComponent,

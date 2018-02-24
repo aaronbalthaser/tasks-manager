@@ -1,9 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { TasksManagerService } from './modules/tasks-manager';
 
 @Component({
   selector: 'app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  template: `
+    <main>
+      <tasks-manager></tasks-manager>
+    </main>
+  `,
 })
 
-export class AppComponent {}
+export class AppComponent implements OnInit {
+
+  constructor(
+    private tasksManager: TasksManagerService
+  ) {}
+
+  ngOnInit() {
+    this.tasksManager.session('Whatever', {
+      'tasks': [
+        'inform_user',
+        'blowup'
+      ]
+    });
+  }
+}

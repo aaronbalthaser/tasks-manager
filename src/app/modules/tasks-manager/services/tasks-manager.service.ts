@@ -31,21 +31,23 @@ export class TasksManagerService {
   public next() {
     this.index++;
     if (this.index <= this.session.length - 1) {
-      this.emit.event.next({
-        taskName: this.tasks[this.index],
-        task: this.session[this.index]
-      });
+      this.emit.event.next(this.session[this.index]);
     } else {
-
+      this.done();
     }
   }
 
   public last() {
-
+    this.index--;
+    if (this.index > -1) {
+      this.emit.event.next(this.session[this.index]);
+    } else {
+      this.index++;
+    }
   }
 
   public done() {
-
+    console.log('done');
   }
 
   public clean() {

@@ -27,7 +27,6 @@ export class TasksComponent {
   }
 
   private event(task: object) {
-    console.log(task);
     let name = task['type'];
     let component;
 

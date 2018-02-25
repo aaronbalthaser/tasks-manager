@@ -14,7 +14,6 @@ import { TaskEmitterService } from './task-emitter.service';
 export class TasksManagerService {
   private callback = null;
   private index = 0;
-  private tasks = [];
 
   public session = [];
 
@@ -46,13 +45,14 @@ export class TasksManagerService {
     }
   }
 
-  public done() {
-    console.log('done');
+  public done(canceled?: boolean) {
+    if (canceled) {
+      console.log('canceled');
+    }
   }
 
   public clean() {
     this.index = 0;
-    this.tasks = [];
     this.session = [];
   }
 
@@ -62,8 +62,11 @@ export class TasksManagerService {
       .mergeMap(_options => this.tasksBuilder.init(_options))
       .subscribe(
         _options => {
-          this.tasks = _options['tasks'];
-          this.session = _options['session'];
+          this.session = _options['session'].map((task, index, array) => {
+            task['step'] = index + 1;
+            return task;
+          });
+
           this.start();
         }
       );

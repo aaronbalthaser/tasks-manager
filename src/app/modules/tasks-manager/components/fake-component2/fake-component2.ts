@@ -8,8 +8,8 @@ import { TasksManagerService } from '../../services/tasks-manager.service';
     <div *ngIf="show">
       Fake Component 2
       <button (click)="continue()">Continut</button>
-      <button (click)="done()">Done</button>
-      <button (click)="back()">Back</button>
+      <button (click)="cancel()">Cancel</button>
+      <button *ngIf="step > 1" (click)="back()">Back</button>
     </div>
   `,
   styles: [`
@@ -24,18 +24,19 @@ import { TasksManagerService } from '../../services/tasks-manager.service';
 })
 
 export class FakeComponent2 {
-  public show = true;
-  public data: any;
+  private data: any;
+  private step = null;
+  private canceled = true;
 
-  private _data: any;
+  public show = true;
 
   constructor(
     private injector: Injector,
     private tasksManager: TasksManagerService
   ) {
 
-    this._data = this.injector.get('data');
-    console.log(this._data);
+    this.data = this.injector.get('data');
+    this.step = this.data['step'];
   }
 
   public close() {
@@ -47,9 +48,9 @@ export class FakeComponent2 {
     this.tasksManager.next();
   }
 
-  done() {
+  cancel() {
     this.close();
-    this.tasksManager.done();
+    this.tasksManager.done(this.canceled);
   }
 
   back() {

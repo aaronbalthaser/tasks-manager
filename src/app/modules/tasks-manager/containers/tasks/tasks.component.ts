@@ -22,15 +22,12 @@ import { TasksConstants } from '../../services/tasks-constants';
 export class TasksComponent {
   componentData: any = null;
 
-  constructor(
-    private trasmit: TaskEmitterService
-  ) {
-
+  constructor(private trasmit: TaskEmitterService) {
     this.trasmit.event.subscribe(data => this.event(data))
   }
 
-  private event(data: any) {
-    let name = data.taskName;
+  private event(task: object) {
+    let name = task['type'];
     let component;
 
     switch (name) {
@@ -44,14 +41,14 @@ export class TasksComponent {
         component = null;
     }
 
-    this.renderComponent(component, data);
+    this.renderComponent(component, task);
   }
 
-  private renderComponent(component: any, data: any) {
+  private renderComponent(component: any, task: object) {
     this.componentData = {
       component: component,
       inputs: {
-        data: data
+        data: task
       }
     };
   }

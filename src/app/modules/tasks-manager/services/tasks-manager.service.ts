@@ -12,10 +12,11 @@ import { TaskEmitterService } from './task-emitter.service';
 
 @Injectable()
 export class TasksManagerService {
-  public session: any;
-
-  private tasks = [];
+  private callback = null;
   private index = 0;
+  private tasks = [];
+
+  public session = [];
 
   constructor(
     private tasksOptions: TasksOptionsService,
@@ -24,10 +25,7 @@ export class TasksManagerService {
   ) {}
 
   private start() {
-    this.emit.event.next({
-      taskName: this.tasks[this.index],
-      task: this.session[this.index]
-    });
+    this.emit.event.next(this.session[this.index]);
   }
 
   public next() {
@@ -50,8 +48,14 @@ export class TasksManagerService {
 
   }
 
-  public init(name: string, options: any, callback?: Function) {
+  public clean() {
     this.index = 0;
+    this.tasks = [];
+    this.session = [];
+  }
+
+  public init(options: any, callback?: Function) {
+    this.callback = callback || null;
     this.tasksOptions.init(options)
       .mergeMap(_options => this.tasksBuilder.init(_options))
       .subscribe(

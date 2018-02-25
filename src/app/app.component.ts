@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TasksManagerService } from './modules/tasks-manager';
+import { TasksManagerService, TasksConstants } from './modules/tasks-manager';
 
 @Component({
   selector: 'app',
@@ -19,10 +19,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.tasksManager.session('Whatever', {
+    this.tasksManager.init({
       'tasks': [
-        'inform_user',
-        'blowup'
+        TasksConstants.TASK_FAKE_COMPONENT_1,
+        TasksConstants.TASK_FAKE_COMPONENT_2
       ]
     });
   }

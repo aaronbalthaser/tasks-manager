@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 
 @Component({
-  selector: 'invalid-token',
+  selector: 'fake-component2',
   template: `
     <div *ngIf="show">
       Invalid Token
@@ -18,7 +18,7 @@ import { Component, Injector } from '@angular/core';
   `]
 })
 
-export class InvalidTokenComponent {
+export class FakeComponent2 {
   public show = true;
   public data: any;
 

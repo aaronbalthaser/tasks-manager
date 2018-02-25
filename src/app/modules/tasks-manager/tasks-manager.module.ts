@@ -10,16 +10,15 @@ import { TaskInjectorComponent } from './containers/tasks/task-injector.componen
 import { TasksComponent } from './containers/tasks/tasks.component';
 
 /* Components */
-import { InvalidTokenComponent } from './components/invalid-token/invalid-token.component';
+import { FakeComponent1 } from './components/fake-component1/fake-component1';
+import { FakeComponent2 } from './components/fake-component2/fake-component2';
 
 /* Services */
 import { TasksDataSource } from './tasks-data-source';
 import { TasksManagerService } from './services/tasks-manager.service';
 import { TasksBuilderService } from './services/tasks-builder.service';
 import { TasksOptionsService } from './services/tasks-options.service';
-import { Transmit } from './services/transmit';
-
-import { Store } from './store';
+import { TaskEmitterService } from './services/task-emitter.service';
 
 /* Routes */
 
@@ -33,16 +32,15 @@ import { Store } from './store';
     TaskInjectorComponent,
     TasksComponent,
 
-    InvalidTokenComponent
+    FakeComponent1,
+    FakeComponent2
   ],
   providers: [
     TasksDataSource,
     TasksManagerService,
     TasksBuilderService,
     TasksOptionsService,
-    Transmit,
-
-    Store
+    TaskEmitterService
   ],
   exports: [
     TasksManagerComponent,

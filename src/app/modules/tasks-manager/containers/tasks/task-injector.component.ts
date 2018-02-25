@@ -9,13 +9,15 @@ import {
 
 /*** Available Components ***/
 /* Tasks Components */
-import { InvalidTokenComponent } from '../../components/invalid-token/invalid-token.component';
+import { FakeComponent1 } from '../../components/fake-component1/fake-component1';
+import { FakeComponent2 } from '../../components/fake-component2/fake-component2';
 
 @Component({
   selector: 'task-injector',
   template: `<div #taskInjectorContainer></div>`,
   entryComponents: [
-    InvalidTokenComponent
+    FakeComponent1,
+    FakeComponent2
   ]
 })
 

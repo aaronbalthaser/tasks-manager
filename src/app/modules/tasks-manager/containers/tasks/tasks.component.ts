@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 
 /* Tasks Components */
-import { InvalidTokenComponent } from '../../components/invalid-token/invalid-token.component';
+import { FakeComponent1 } from '../../components/fake-component1/fake-component1';
+import { FakeComponent2 } from '../../components/fake-component2/fake-component2';
 
 /* Services */
-import { Transmit } from '../../services/transmit';
+import { TaskEmitterService } from '../../services/task-emitter.service';
+
+import { TasksConstants } from '../../services/tasks-constants';
 
 @Component({
   selector: 'tasks',
@@ -20,15 +23,33 @@ export class TasksComponent {
   componentData: any = null;
 
   constructor(
-    private trasmit: Transmit
+    private trasmit: TaskEmitterService
   ) {
 
-    this.trasmit.invalidToken.subscribe(data => this.taskInvalidToken(data));
+    this.trasmit.event.subscribe(data => this.event(data))
   }
 
-  private taskInvalidToken(data: any) {
+  private event(data: any) {
+    let name = data.taskName;
+    let component;
+
+    switch (name) {
+      case TasksConstants.TASK_FAKE_COMPONENT_1:
+        component = FakeComponent1;
+        break;
+      case TasksConstants.TASK_FAKE_COMPONENT_2:
+        component = FakeComponent2;
+        break;
+      default:
+        component = null;
+    }
+
+    this.renderComponent(component, data);
+  }
+
+  private renderComponent(component: any, data: any) {
     this.componentData = {
-      component: InvalidTokenComponent,
+      component: component,
       inputs: {
         data: data
       }

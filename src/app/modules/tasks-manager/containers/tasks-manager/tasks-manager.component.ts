@@ -7,7 +7,7 @@ import { TaskEmitterService } from '../../services/task-emitter.service';
   selector: 'tasks-manager',
   styleUrls: ['tasks-manager.component.scss'],
   template: `
-    <div class="">
+    <div class="tasks">
       <tasks></tasks>
     </div>
   `

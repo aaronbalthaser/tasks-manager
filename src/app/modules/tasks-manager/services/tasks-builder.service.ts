@@ -8,7 +8,6 @@ import { TasksDataSource } from '../tasks-data-source';
 
 @Injectable()
 export class TasksBuilderService {
-  private tasks = [];
   private targets = [];
 
   constructor(

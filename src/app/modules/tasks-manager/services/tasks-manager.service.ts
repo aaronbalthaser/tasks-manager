@@ -52,6 +52,7 @@ export class TasksManagerService {
   }
 
   public clean() {
+    this.callback = null;
     this.index = 0;
     this.session = [];
   }
